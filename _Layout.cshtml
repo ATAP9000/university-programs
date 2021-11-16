@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ejemplo</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />*@
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/bootstrap-icons/font/bootstrap-icons.css" />
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .sidebar{
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 15%;
+            background: blue;
+            transition: all 0.5s ease;
+        }
+        
+        .navbare{
+            left: 15%;
+            width: 85%;
+        }
+
+        .sidebar.close{
+            width: 5%;
+        }
+
+        .sidebar .logo-details{
+
+        }
+
+        .sidebar .logo-details i{
+
+        }
+        
+        .sidebar .logo-details .logo-name{
+
+        }
+
+        .sidebar .nav-links{
+            background: red;
+            height: 100%;
+            padding-top: 10%;
+            overflow: auto;
+        }
+
+        .sidebar .nav-links::-webkit-scrollbar{
+            display: none;
+        }
+
+        .sidebar .nav-links li{
+            position: relative;
+            list-style: none;
+            transition: all 0.4s ease;
+
+        }
+        
+        .sidebar .nav-links li:hover {
+            background: green;
+        }
+        
+        .sidebar .nav-links li .iocn-link{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar .nav-links li i{
+            height: 2em;
+            min-width: 0.2em;
+            text-align: center;
+            color: #fff;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar .nav-links li.showMenu i.arrow {
+            transform: rotate(-180deg);
+        }
+
+        .sidebar .nav-links li.showMenu .sub-menu {
+            display: block;
+        }
+        
+        .sidebar .nav-links li a{
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .sidebar .nav-links li a .link_name{
+            color: #fff;
+
+        }
+        
+        .sidebar .nav-links li .sub-menu {
+            padding: 1em 1em 0.5em 1em;
+            display: none;
+
+        }
+        
+        .sidebar .nav-links li .sub-menu a{
+            color: #fff;
+            font-size: 0.8em;
+            padding: 0.2em 0;
+        }
+
+        .home-section{
+            position: relative;
+            background: gray;
+            left: 15%;
+            width: 85%;
+            transition: all 0.5s ease;
+        }
+
+
+        .sidebar.close ~ .home-section{
+            left: 5%;
+            width: 95%;
+        }
+
+        .home-section .home-content{
+            display: flex;
+        }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-1 navbare">
+            <div class="container">
+                <button class="btn btn-outline-primary btn-sidebar" type="button"  aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#ItemsOnRight" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="ItemsOnRight" class="navbar-collapse collapse d-sm-inline-flex justify-content-between ms-auto">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item ms-auto">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item ms-auto">
+                            <a class="nav-link text-dark text-lg-right" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="sidebar">
+        <div class="logo-details text-center">
+            <i class="bi bi-microsoft"></i>
+            <span class="logo-name">GESTION INTERNA</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="#">
+                    <i class="bi bi-cup"></i>
+                    <span class="link_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i class="bi bi-cup"></i>
+                        <span class="link_name">Dashboard</span>
+                    </a>
+                    <i class="bi bi-arrow-bar-down arrow"></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="#">DISENO WEB</a></li>
+                    <li><a href="#">DISENO WEB</a></li>
+                    <li><a href="#">DISENO WEB</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-cup"></i>
+                    <span class="link_name">Dashboard</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="home-section">
+        <main role="main" class="pb-3 home-content">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - ejemplo - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/jquery/jquery.js"></script>
+    <script src="~/bootstrap/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        let arrow = document.querySelectorAll(".arrow");
+        console.log(arrow);
+        for (var i = 0; i < arrow.length; i++) {
+            arrow[i].addEventListener("click", (e) => {
+                let arrowParent = e.target.parentElement.parentElement;
+                arrowParent.classList.toggle("showMenu");
+            });
+        }
+
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".btn-sidebar");
+        sidebarBtn.addEventListener("click", ()=> {
+            sidebar.classList.toggle("close");
+        });
+        console.log(sidebar);
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
